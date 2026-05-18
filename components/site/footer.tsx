@@ -7,6 +7,12 @@ export function SiteFooter() {
         <p>© 2026 Fideson</p>
         <nav className="flex flex-wrap gap-x-6 gap-y-2">
           <Link
+            href="/terms"
+            className="hover:text-foreground"
+          >
+            Terms
+          </Link>
+          <Link
             href="/privacy"
             className="hover:text-foreground"
           >
