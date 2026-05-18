@@ -13,7 +13,7 @@ export function SiteFooter() {
             Privacy
           </Link>
           <Link
-            href="/data-deletion"
+            href="/delete-my-data"
             className="hover:text-foreground"
           >
             Data deletion
