@@ -1,101 +1,138 @@
-import Image from "next/image";
+import {
+  MessageSquare,
+  Inbox,
+  MessagesSquare,
+} from "lucide-react";
 
-export default function Home() {
+import { Button } from "@/components/ui/button";
+import { SiteHeader, EARLY_ACCESS_HREF } from "@/components/site/header";
+import { SiteFooter } from "@/components/site/footer";
+import { HeroVisual } from "@/components/site/hero-visual";
+
+const features = [
+  {
+    title: "Auto-reply flows",
+    body: "Build visual flows that respond to DM keywords, story replies, and post comments — no code, no chatbot jargon.",
+    icon: MessageSquare,
+  },
+  {
+    title: "Unified inbox",
+    body: "Every conversation in one screen. Hand off any thread to your team with a click — bot pauses, human takes over, then hands back when done.",
+    icon: Inbox,
+  },
+  {
+    title: "Comment-to-DM funnels",
+    body: "Trigger a private reply the moment someone comments a keyword on your post. Public reply + DM, all from one flow.",
+    icon: MessagesSquare,
+  },
+];
+
+const steps = [
+  "Connect your Instagram Business account",
+  "Build a flow with the visual builder",
+  "Publish — Fideson handles every DM and comment from there",
+];
+
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="flex min-h-screen flex-col">
+      <SiteHeader />
+      <main className="flex-1">
+        {/* Hero */}
+        <section className="relative overflow-hidden">
+          <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 lg:grid-cols-2 lg:py-28">
+            <div className="space-y-7">
+              <p className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary">
+                For Instagram Business accounts
+              </p>
+              <h1 className="text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+                Stop missing DMs and comments on Instagram.
+              </h1>
+              <p className="max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
+                Fideson auto-replies, captures leads, and runs flows on your
+                Instagram Business account — so you can scale engagement
+                without scaling your team.
+              </p>
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <Button asChild size="lg">
+                  <a href={EARLY_ACCESS_HREF}>Request early access</a>
+                </Button>
+                <span className="text-sm text-muted-foreground">
+                  No credit card. Limited spots.
+                </span>
+              </div>
+            </div>
+            <div className="flex justify-center lg:justify-end">
+              <HeroVisual />
+            </div>
+          </div>
+        </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+        {/* Features */}
+        <section className="border-t border-border/60 bg-muted/40">
+          <div className="mx-auto max-w-6xl px-6 py-20 lg:py-24">
+            <div className="grid gap-10 md:grid-cols-3 md:gap-8">
+              {features.map(({ title, body, icon: Icon }) => (
+                <div key={title} className="space-y-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 text-primary">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <h2 className="text-lg font-semibold text-foreground">
+                    {title}
+                  </h2>
+                  <p className="text-base leading-relaxed text-muted-foreground">
+                    {body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* How it works */}
+        <section className="border-t border-border/60">
+          <div className="mx-auto max-w-6xl px-6 py-20 lg:py-24">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+                How it works
+              </h2>
+              <p className="mt-4 text-base text-muted-foreground">
+                Three steps from connection to fully automated engagement.
+              </p>
+            </div>
+            <ol className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-3">
+              {steps.map((step, i) => (
+                <li
+                  key={step}
+                  className="relative rounded-lg border border-border bg-card p-6"
+                >
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
+                    {i + 1}
+                  </span>
+                  <p className="mt-4 text-base font-medium text-foreground">
+                    {step}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* Closing CTA */}
+        <section className="border-t border-border/60 bg-muted/40">
+          <div className="mx-auto max-w-6xl px-6 py-20 text-center lg:py-24">
+            <h2 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              Be among the first to automate your Instagram.
+            </h2>
+            <div className="mt-8 flex justify-center">
+              <Button asChild size="lg">
+                <a href={EARLY_ACCESS_HREF}>Request early access</a>
+              </Button>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
