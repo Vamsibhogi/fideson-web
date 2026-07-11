@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/seo";
 import { USE_CASES } from "@/data/use-cases";
 import { COUNTRIES, countrySlug } from "@/data/countries";
+import { localesForCountry } from "@/lib/i18n";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -34,12 +35,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   for (const c of COUNTRIES) {
+    const slug = countrySlug(c);
     entries.push({
-      url: `${SITE.url}/instagram-automation-in/${countrySlug(c)}`,
+      url: `${SITE.url}/instagram-automation-in/${slug}`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,
     });
+    for (const l of localesForCountry(c.code)) {
+      entries.push({
+        url: `${SITE.url}/instagram-automation-in/${slug}/${l}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.6,
+      });
+    }
   }
 
   return entries;

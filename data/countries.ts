@@ -129,6 +129,78 @@ export const COUNTRIES: Country[] = [
     payments: "card and bank transfer links", city: "Dubai", currencyEx: "AED120",
     angle: "In a fast, competitive market like the UAE, instant replies are the difference between a sale and a scroll-past.",
   },
+  {
+    code: "NP", name: "Nepal", adjective: "Nepali", region: "EMERGING", ogLocale: "ne_NP",
+    currencyName: "rupees", sectors: "online shops, handicrafts, and home businesses",
+    payments: "eSewa, Khalti, and bank links", city: "Kathmandu", currencyEx: "रू1,500",
+    angle: "Nepali sellers reach the whole country through Instagram — Fideson makes sure no order enquiry is missed.",
+  },
+  {
+    code: "KH", name: "Cambodia", adjective: "Cambodian", region: "EMERGING", ogLocale: "km_KH",
+    currencyName: "riel", sectors: "online shops, cafes, and fashion sellers",
+    payments: "ABA, Wing, and bank transfer links", city: "Phnom Penh", currencyEx: "$9",
+    angle: "Instagram commerce is growing fast in Cambodia; Fideson helps small shops keep up with the DMs.",
+  },
+  {
+    code: "MM", name: "Myanmar", adjective: "Burmese", region: "EMERGING", ogLocale: "my_MM",
+    currencyName: "kyat", sectors: "online sellers, boutiques, and food businesses",
+    payments: "KBZPay, Wave Money, and bank links", city: "Yangon", currencyEx: "K25,000",
+    angle: "Social selling drives real income in Myanmar — Fideson answers the messages so sellers can focus on orders.",
+  },
+  {
+    code: "TZ", name: "Tanzania", adjective: "Tanzanian", region: "EMERGING", ogLocale: "sw_TZ",
+    currencyName: "shillings", sectors: "online sellers, food vendors, and boutiques",
+    payments: "M-Pesa, Tigo Pesa, and bank links", city: "Dar es Salaam", currencyEx: "TSh20,000",
+    angle: "Mobile money makes buying easy in Tanzania; Fideson makes the reply that leads to it just as easy.",
+  },
+  {
+    code: "UG", name: "Uganda", adjective: "Ugandan", region: "EMERGING", ogLocale: "en_UG",
+    currencyName: "shillings", sectors: "online vendors, fashion, and food businesses",
+    payments: "MTN MoMo, Airtel Money, and bank links", city: "Kampala", currencyEx: "USh35,000",
+    angle: "Ugandan businesses win customers on Instagram; Fideson makes sure every one gets a fast reply.",
+  },
+  {
+    code: "RW", name: "Rwanda", adjective: "Rwandan", region: "EMERGING", ogLocale: "en_RW",
+    currencyName: "francs", sectors: "online shops, crafts, and service businesses",
+    payments: "MTN MoMo and bank links", city: "Kigali", currencyEx: "RWF12,000",
+    angle: "As Rwanda's digital economy grows, fast Instagram replies help small businesses grow with it.",
+  },
+  {
+    code: "ET", name: "Ethiopia", adjective: "Ethiopian", region: "EMERGING", ogLocale: "am_ET",
+    currencyName: "birr", sectors: "online sellers, fashion, and home businesses",
+    payments: "telebirr and bank links", city: "Addis Ababa", currencyEx: "ETB1,200",
+    angle: "Ethiopian entrepreneurs are building brands on Instagram — Fideson answers the DMs that turn into sales.",
+  },
+  {
+    code: "ZM", name: "Zambia", adjective: "Zambian", region: "EMERGING", ogLocale: "en_ZM",
+    currencyName: "kwacha", sectors: "online vendors, boutiques, and food businesses",
+    payments: "MTN MoMo, Airtel Money, and bank links", city: "Lusaka", currencyEx: "K450",
+    angle: "Zambian sellers reach buyers nationwide through Instagram; Fideson keeps up with the enquiries.",
+  },
+  {
+    code: "SN", name: "Senegal", adjective: "Senegalese", region: "EMERGING", ogLocale: "fr_SN",
+    currencyName: "CFA francs", sectors: "online shops, fashion, and food businesses",
+    payments: "Wave, Orange Money, and bank links", city: "Dakar", currencyEx: "12.000 FCFA",
+    angle: "Mobile money is everywhere in Senegal; Fideson makes the Instagram reply that leads to the sale instant.",
+  },
+  {
+    code: "CI", name: "Côte d'Ivoire", adjective: "Ivorian", region: "EMERGING", ogLocale: "fr_CI",
+    currencyName: "CFA francs", sectors: "online sellers, fashion, and food businesses",
+    payments: "Wave, Orange Money, and MTN MoMo links", city: "Abidjan", currencyEx: "10.000 FCFA",
+    angle: "Ivorian businesses grow on Instagram; Fideson answers the DMs so none of that growth slips away.",
+  },
+  {
+    code: "MA", name: "Morocco", adjective: "Moroccan", region: "EMERGING", ogLocale: "fr_MA",
+    currencyName: "dirhams", sectors: "online shops, artisans, and fashion sellers",
+    payments: "CMI card and bank transfer links", city: "Casablanca", currencyEx: "MAD250",
+    angle: "Moroccan online sellers close deals in the DMs — Fideson makes sure the reply is always instant.",
+  },
+  {
+    code: "SA", name: "Saudi Arabia", adjective: "Saudi", region: "GLOBAL", ogLocale: "ar_SA",
+    currencyName: "riyals", sectors: "boutiques, F&B, and online stores",
+    payments: "mada, STC Pay, and card links", city: "Riyadh", currencyEx: "SAR120",
+    angle: "In Saudi Arabia's fast-moving retail scene, an AI agent that never sleeps keeps every enquiry warm.",
+  },
 ];
 
 export function getCountry(code: string): Country | undefined {
@@ -136,7 +208,15 @@ export function getCountry(code: string): Country | undefined {
   return COUNTRIES.find((x) => x.code === c);
 }
 
-/** URL slug for a country page (lower-case ISO code). */
+/** SEO-friendly URL slug from the country name, e.g. "south-africa". */
 export function countrySlug(c: Country): string {
-  return c.code.toLowerCase();
+  return c.name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+/** Look up a country by its name-slug. */
+export function getCountryBySlug(slug: string): Country | undefined {
+  return COUNTRIES.find((c) => countrySlug(c) === slug);
 }
