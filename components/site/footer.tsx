@@ -7,6 +7,7 @@ const PRODUCT = [
   { href: "/features", label: "Features" },
   { href: "/pricing", label: "Pricing" },
   { href: "/manychat-alternative", label: "ManyChat alternative" },
+  { href: "/instagram-automation-in", label: "By country" },
   { href: SIGN_UP_URL, label: "Get started" },
 ];
 

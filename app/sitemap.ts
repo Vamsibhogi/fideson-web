@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/seo";
 import { USE_CASES } from "@/data/use-cases";
+import { COUNTRIES, countrySlug } from "@/data/countries";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -9,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/pricing", priority: 0.9, freq: "weekly" },
     { path: "/features", priority: 0.9, freq: "monthly" },
     { path: "/manychat-alternative", priority: 0.8, freq: "monthly" },
+    { path: "/instagram-automation-in", priority: 0.8, freq: "monthly" },
     { path: "/privacy", priority: 0.3, freq: "yearly" },
     { path: "/terms", priority: 0.3, freq: "yearly" },
     { path: "/data-deletion", priority: 0.2, freq: "yearly" },
@@ -25,6 +27,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const u of USE_CASES) {
     entries.push({
       url: `${SITE.url}/instagram-automation/${u.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    });
+  }
+
+  for (const c of COUNTRIES) {
+    entries.push({
+      url: `${SITE.url}/instagram-automation-in/${countrySlug(c)}`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,
