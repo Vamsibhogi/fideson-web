@@ -3,6 +3,11 @@ import { Sparkles, Inbox, GitBranch, MessageSquare } from "lucide-react";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
 import { HeroVisual } from "@/components/site/hero-visual";
+import { Faq } from "@/components/site/faq";
+import { JsonLd } from "@/components/site/json-ld";
+import { faqSchema } from "@/lib/schema";
+import { FAQS } from "@/data/faqs";
+import { USE_CASES } from "@/data/use-cases";
 import { SIGN_UP_URL } from "@/lib/site";
 
 const FEATURES = [
@@ -39,6 +44,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
+      <JsonLd data={faqSchema(FAQS)} />
 
       <main className="flex-1">
         {/* Hero */}
@@ -119,6 +125,36 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </section>
+
+        {/* Use cases (internal links for SEO + navigation) */}
+        <section className="mx-auto max-w-6xl px-6 py-16">
+          <h2 className="font-display text-3xl font-bold tracking-tight text-ink">
+            Built for your kind of business.
+          </h2>
+          <p className="mt-2 max-w-xl font-ui text-muted">
+            However you sell on Instagram, Fideson answers the questions your customers actually ask.
+          </p>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {USE_CASES.map((u) => (
+              <Link
+                key={u.slug}
+                href={`/instagram-automation/${u.slug}`}
+                className="group flex items-center justify-between rounded-xl border border-line bg-surface px-5 py-4 shadow-e1 transition-colors hover:bg-iris-soft"
+              >
+                <span className="font-ui text-sm font-medium capitalize text-ink">{u.audience}</span>
+                <span className="font-ui text-iris transition-transform group-hover:translate-x-0.5">→</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="mx-auto max-w-6xl px-6 py-16">
+          <h2 className="mb-8 text-center font-display text-3xl font-bold tracking-tight text-ink">
+            Questions, answered.
+          </h2>
+          <Faq items={FAQS} />
         </section>
 
         {/* Positioning / pricing nudge */}

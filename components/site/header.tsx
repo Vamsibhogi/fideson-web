@@ -12,14 +12,14 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-7 font-ui text-sm text-muted sm:flex">
-          <Link href="/#features" className="transition-colors hover:text-ink">
+          <Link href="/features" className="transition-colors hover:text-ink">
             Features
-          </Link>
-          <Link href="/#how" className="transition-colors hover:text-ink">
-            How it works
           </Link>
           <Link href="/pricing" className="transition-colors hover:text-ink">
             Pricing
+          </Link>
+          <Link href="/manychat-alternative" className="transition-colors hover:text-ink">
+            vs ManyChat
           </Link>
         </nav>
 

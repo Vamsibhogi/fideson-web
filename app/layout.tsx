@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { JsonLd } from "@/components/site/json-ld";
+import { organizationSchema, websiteSchema, softwareAppSchema } from "@/lib/schema";
 
 const siteUrl = "https://fideson.com";
 
@@ -36,7 +38,12 @@ export const metadata: Metadata = {
     description:
       "An AI agent that answers your Instagram DMs and comments, captures leads, and runs flows.",
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
+  alternates: { canonical: "/" },
 };
 
 export default function RootLayout({
@@ -51,7 +58,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen font-ui text-ink antialiased">{children}</body>
+      <body className="min-h-screen font-ui text-ink antialiased">
+        <JsonLd data={[organizationSchema(), websiteSchema(), softwareAppSchema()]} />
+        {children}
+      </body>
     </html>
   );
 }
