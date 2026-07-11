@@ -2,35 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 225 69% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222 47% 11%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 225 69% 50%;
-    --radius: 0.5rem;
-  }
+/* ============================================================
+   Fideson — "Spatial" design system (shared with the product app).
+   Light-first with a deep-ink dark theme. The "aurora" gradient is
+   reserved for AI surfaces.
+   ============================================================ */
+:root {
+  --bg: #f3f4f8;
+  --surface: #ffffff;
+  --glass: rgba(255, 255, 255, 0.7);
+  --glass-brd: rgba(255, 255, 255, 0.9);
+  --line: #e4e6ee;
+  --line-soft: #eeeff5;
+  --ink: #16181f;
+  --muted: #5a5e6b;
+  --faint: #8a8e9c;
+  --iris: #5650e6;
+  --iris-deep: #4338ca;
+  --iris-soft: #ecebff;
+  --violet: #9b5cf0;
+  --sky: #5bb6e8;
+  --teal: #3fb8c9;
+  --success: #13b57f;
+  --warning: #e8a13a;
+  --error: #ef5a6f;
+  --info: #4f9fe0;
+  --aurora: linear-gradient(120deg, #5650e6 0%, #9b5cf0 48%, #5bb6e8 100%);
+}
 
-  * {
-    @apply border-border;
-  }
+[data-theme="dark"] {
+  --bg: #0e1018;
+  --surface: #161922;
+  --glass: rgba(255, 255, 255, 0.055);
+  --glass-brd: rgba(255, 255, 255, 0.1);
+  --line: #262a36;
+  --line-soft: #20242f;
+  --ink: #ecedf2;
+  --muted: #9ca0ae;
+  --faint: #6a6e7c;
+  --iris: #7b74ff;
+  --iris-deep: #5650e6;
+  --iris-soft: #1e2030;
+  --violet: #b07cff;
+  --sky: #6fc2f0;
+  --teal: #4fc8d8;
+  --aurora: linear-gradient(120deg, #7b74ff 0%, #b07cff 48%, #6fc2f0 100%);
+}
+
+@layer base {
   body {
-    @apply bg-background text-foreground antialiased;
+    background-color: var(--bg);
+    background-image: radial-gradient(
+        95% 95% at 2% 108%,
+        color-mix(in srgb, var(--violet) 9%, transparent) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        85% 85% at 100% 30%,
+        color-mix(in srgb, var(--sky) 10%, transparent) 0%,
+        transparent 48%
+      ),
+      radial-gradient(
+        120% 120% at 80% -10%,
+        color-mix(in srgb, var(--iris) 8%, transparent) 0%,
+        transparent 45%
+      );
+    background-attachment: fixed;
+    color: var(--ink);
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* The AI signature. Use ONLY on agent/brand surfaces. */
+  .bg-aurora {
+    background-image: var(--aurora);
+  }
+  .text-aurora {
+    background-image: var(--aurora);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .glass {
+    background-color: var(--glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-brd);
   }
 }

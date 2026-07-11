@@ -1,65 +1,57 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { cn } from "@/lib/utils";
 import "./globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
 
 const siteUrl = "https://fideson.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Fideson — Instagram DM and comment automation for businesses",
+    default: "Fideson — AI-native Instagram DM & comment automation",
     template: "%s · Fideson",
   },
   description:
-    "Fideson auto-replies to Instagram DMs and comments, captures leads, and runs flows on your Instagram Business account — so you can scale engagement without scaling your team.",
+    "Fideson answers your Instagram DMs and comments automatically with an AI agent that knows your business — captures leads, books calls, and runs flows. Built for small businesses, priced for India, SE Asia & Africa.",
   applicationName: "Fideson",
   authors: [{ name: "Fideson" }],
   keywords: [
     "Instagram automation",
     "Instagram DM automation",
+    "AI Instagram agent",
     "Instagram comment automation",
     "Instagram Business",
     "Manychat alternative",
     "comment-to-DM",
-    "auto-reply flows",
   ],
   openGraph: {
     type: "website",
     url: siteUrl,
     siteName: "Fideson",
-    title: "Fideson — Instagram DM and comment automation for businesses",
+    title: "Fideson — AI-native Instagram DM & comment automation",
     description:
-      "Auto-replies, lead capture, and visual flow builder for Instagram Business accounts.",
+      "An AI agent that answers your Instagram DMs and comments, captures leads, and runs flows. Affordable, and actually easy to use.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fideson — Instagram DM and comment automation",
+    title: "Fideson — AI-native Instagram DM & comment automation",
     description:
-      "Auto-replies, lead capture, and visual flow builder for Instagram Business accounts.",
+      "An AI agent that answers your Instagram DMs and comments, captures leads, and runs flows.",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={cn(inter.variable, "scroll-smooth")}>
-      <body className="min-h-screen bg-background font-sans text-foreground">
-        {children}
-      </body>
+    <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="preconnect" href="https://fonts.bunny.net" />
+        <link
+          href="https://fonts.bunny.net/css?family=bricolage-grotesque:400,500,600,700,800&family=outfit:300,400,500,600,700&family=jetbrains-mono:400,500&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="min-h-screen font-ui text-ink antialiased">{children}</body>
     </html>
   );
 }
